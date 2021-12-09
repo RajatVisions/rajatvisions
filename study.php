@@ -26,9 +26,13 @@
     $conn->close();
     // Funtion customerData();
     function customerData($res){
-      $result = "<tr>";
       try{
+      $result = "<tr>";
           while($row = $res->fetch_assoc()) {
+            if ($row['employee_id'] == null) {
+              echo "Employee Id is Null";
+              return false;
+            }
             foreach ($row as $key => $value){
             $result .= "<td>". $value . "</td>";
             }
