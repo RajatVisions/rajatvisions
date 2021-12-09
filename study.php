@@ -14,11 +14,11 @@
     $res = $conn->query($sql);
         if ($res) {
 ?>
-
         <table id='customers'><tr><th>ID</th><th>Employee ID</th><th>Firstname</th><th>Email</th><th>Salary</th><th>Regular leave</th></tr>
-        <?php  
-        echo customerData($res);
-        ?>
+            <?php  
+                $reslt =  customerData($res);
+                echo $reslt;
+            ?>
         </table>
 <?php
         }
@@ -27,6 +27,7 @@
     // Funtion customerData();
     function customerData($res){
       $result = "<tr>";
+      try{
           while($row = $res->fetch_assoc()) {
             foreach ($row as $key => $value){
             $result .= "<td>". $value . "</td>";
@@ -35,6 +36,10 @@
           }
           return $result;
         }
+        catch (Exception $e){
+          print "something went wrong, caught yah! n";
+        }
+      }
 
 ?>
 <style>
